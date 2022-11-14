@@ -66,7 +66,7 @@ const routes = [
   {
     path: '/logins',
     name: 'logins',
-    component: () => import('../views/loginS.vue'),
+    component: () => import('../views/loginR.vue'),
   },
   {
     path: '/verpedidos',
@@ -106,6 +106,7 @@ router.beforeResolve((to, from, next) => {
   }
   next();
 });
+
 
 router.afterEach(() => {
   NProgress.done();

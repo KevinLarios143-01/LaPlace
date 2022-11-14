@@ -1,8 +1,8 @@
 <template>
-  <NavComp/>
-  <CarouselComp/>
+  <NavComp  />
+  <CarouselComp v-if="$store.state.isAuthenticated" />
   <router-view/>
-  <FooterComp/>
+  <FooterComp v-if="$store.state.isAuthenticated" />
 </template>
 <script>
 import NavComp from "@/components/NavComp.vue";
