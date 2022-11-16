@@ -1,23 +1,26 @@
 <template>
-  <NavComp  />
-  <CarouselComp v-if="$store.state.isAuthenticated" />
-  <router-view/>
-  <FooterComp v-if="$store.state.isAuthenticated" />
+  <NavComp />
+  <CarouselComp />
+  <router-view />
+  <FooterComp />
 </template>
 <script>
 import NavComp from "@/components/NavComp.vue";
 
 import FooterComp from "@/components/FooterComp.vue";
 import CarouselComp from "./components/CarouselComp.vue";
-  export default {
-    name: "App",
-    components: {
+export default {
+  name: "App",
+  components: {
     NavComp,
     FooterComp,
     CarouselComp
-}
+  },
+  mounted(){
+    this.$store.commit('UpdateCartFromLocalStorage');
   }
-  </script>
+}
+</script>
 <style>
 #app {
   font-family: Roboto;
@@ -33,7 +36,8 @@ nav {
 nav a {
   color: #E9D5CA;
 }
-.nav-link{
+
+.nav-link {
   color: #e9d5cabb;
 }
 

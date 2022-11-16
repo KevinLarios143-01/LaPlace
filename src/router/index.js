@@ -24,61 +24,11 @@ const routes = [
     component: () => import('../views/Categoria.vue'),
   },
   {
-    path: '/precios',
-    name: 'precios',
-    component: () => import('../views/Precios.vue'),
-  },
-  {
-    path: '/estatus',
-    name: 'estatus',
-    component: () => import('../views/Estatus.vue'),
-  },
-  {
-    path: '/verstatus',
-    name: 'verstatus',
-    component: () => import('../views/VerStatus.vue'),
-  },
-  {
-    path: '/consulta',
-    name: 'consulta-item',
-    component: () => import('../views/Consulta-item.vue'),
-  },
-  {
-    path: '/envio',
-    name: 'envio-item',
-    component: () => import('../views/Envio-item.vue'),
-  },
-  {
-    path: '/status',
-    name: 'status-item',
-    component: () => import('../views/Status-item.vue'),
-  },
-  {
-    path: '/cambiarstatus',
-    name: 'cambiarstatus',
-    component: () => import('../views/ActualizarStatus.vue'),
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: () => import('../views/Login.vue'),
-  },
-  {
     path: '/logins',
     name: 'logins',
     component: () => import('../views/loginR.vue'),
   },
-  {
-    path: '/verpedidos',
-    name: 'verpedidos',
-    component: () => import('../views/VerPedidos.vue'),
-  },
-  {
-    path: '/generar',
-    name: 'generar',
-    component: () => import('../views/GenerarSolicitud.vue'),
-  },
-  {
+   {
     path: '/nombre',
     name: 'nombre',
     component: () => import('../views/nombre.vue'),
@@ -91,8 +41,8 @@ const routes = [
   {
     path: '/menu',
     name: 'menu',
-    component: () => import('../views/Menu.vue')
-  }
+    component: () => import('../views/Catalog.vue')
+  },
 ]
 
 const router = createRouter({

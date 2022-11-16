@@ -4,11 +4,12 @@
         position="sticky">
 
         <a class="navbar-brand">
-            <img src="https://i.ibb.co/TkM65BZ/logo.png" alt="" width="60" height="40" class="d-inline-block align-text-top">
+            <img src="https://i.ibb.co/TkM65BZ/logo.png" alt="" width="60" height="40"
+                class="d-inline-block align-text-top">
             <router-link class="nav-link" to="/">
-            La Place
+                La Place
             </router-link>
-            
+
         </a>
         <MDBNavbarToggler target="#navbarColor01" @click="collapse7 = !collapse7"></MDBNavbarToggler>
         <MDBCollapse id="navbarColor01" v-model="collapse7">
@@ -16,20 +17,14 @@
                 <MDBNavbarItem linkClass="link-secondary">
                     <router-link class="nav-link" to="/menu">Menu</router-link>
                 </MDBNavbarItem>
-                <MDBNavbarItem linkClass="link-secondary">
-                    <router-link class="nav-link" to="/departamentos">Departamentos</router-link>
+                <MDBNavbarItem linkClass="link-secondary" v-if="$store.state.isAuthenticated">
+                    <router-link class="nav-link" to="/departamentos">Reservaciones</router-link>
                 </MDBNavbarItem>
-                <MDBNavbarItem linkClass="link-secondary">
-                    <router-link class="nav-link" to="/solicitud">Solicitud</router-link>
+                <MDBNavbarItem linkClass="link-secondary" v-if="$store.state.isAuthenticated">
+                    <router-link class="nav-link" to="/solicitud">Reservar</router-link>
                 </MDBNavbarItem>
-                <MDBNavbarItem linkClass="link-secondary">
-                    <router-link class="nav-link" to="/categoria">Categoria</router-link>
-                </MDBNavbarItem>
-                <MDBNavbarItem linkClass="link-secondary">
-                    <router-link class="nav-link" to="/estatus">Status</router-link>
-                </MDBNavbarItem>
-                <MDBNavbarItem linkClass="link-secondary">
-                    <router-link class="nav-link" to="/precios">Precios</router-link>
+                <MDBNavbarItem linkClass="link-secondary" v-if="$store.state.isAuthenticated">
+                    <router-link class="nav-link" to="/categoria">Crear Menu</router-link>
                 </MDBNavbarItem>
                 <MDBNavbarItem linkClass="link-secondary">
                     <router-link class="nav-link" to="/about">About</router-link>
@@ -38,17 +33,30 @@
         </MDBCollapse>
 
         <MDBNavbarNav class="mb-2 mb-lg-0 d-flex flex-row">
-            <MDBNavbarItem to="/nombre" class="me-3 me-lg-0" linkClass="link-secondary">
+            <MDBNavbarItem to="/nombre" class="me-3 me-lg-0" linkClass="link-secondary"
+                v-if="$store.state.isAuthenticated">
                 <MDBIcon icon="shopping-cart"></MDBIcon>
             </MDBNavbarItem>
-            <MDBNavbarItem to="#" class="me-3 me-lg-0" linkClass="link-secondary">
+            <MDBNavbarItem to="#" class="me-3 me-lg-0" linkClass="link-secondary" v-if="$store.state.isAuthenticated">
                 <MDBIcon icon="bell" />
                 <MDBBadge notification color="danger" pill>1</MDBBadge>
             </MDBNavbarItem>
-            <MDBNavbarItem href="#" class="me-3 me-lg-0">
-                <img src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg" class="rounded-circle" height="22"
-                    alt="" loading="lazy" />
-            </MDBNavbarItem>
+            <!-- Avatar -->
+            <MDBDropdown class="nav-item" v-model="dropdown6">
+                <MDBDropdownToggle tag="a" class="nav-link" @click="dropdown6 = !dropdown6">
+                    <img src="https://mdbootstrap.com/img/Photos/Avatars/img (31).webp" class="rounded-circle" alt=""
+                        loading="lazy" style="width: 30px; height: 30px;" />
+
+
+                </MDBDropdownToggle>
+                <MDBDropdownMenu>
+                    <MDBDropdownItem href="/logins" v-if="!$store.state.isAuthenticated">Iniciar Sesión
+                    </MDBDropdownItem>
+                    <MDBDropdownItem href="/nombre" v-if="$store.state.isAuthenticated">Mis Pedidos</MDBDropdownItem>
+                    <MDBDropdownItem href="" @click="logout()" v-if="$store.state.isAuthenticated">Logout
+                    </MDBDropdownItem>
+                </MDBDropdownMenu>
+            </MDBDropdown>
         </MDBNavbarNav>
 
 
@@ -74,6 +82,9 @@ import {
 import { ref } from 'vue';
 
 export default {
+    mounted(){
+        
+    },
     data() {
         return {
 
@@ -96,13 +107,26 @@ export default {
         MDBCollapse,
     },
     setup() {
-        var dropdown3 = ref(false);
+        var dropdown6 = ref(false);
         var collapse7 = ref(false);
+        //const dropdown6 = ref(false);
 
         return {
-            dropdown3,
+            dropdown6,
             collapse7,
         }
+    },
+    methods: {
+        logout() {
+            this.$store.state.isAuthenticated = false;
+            this.$store.state.user = "";
+            this.datalocalstorage();
+            this.$router.push("/");
+        },
+        datalocalstorage() {
+            localStorage.setItem('vue3.isAuthenticated', JSON.stringify(this.$store.state.isAuthenticated));
+            localStorage.setItem('vue3.usuario', JSON.stringify(this.$store.state.user));
+        },
     }
 };
 </script>

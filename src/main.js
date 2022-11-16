@@ -3,16 +3,17 @@ import VueSweetalert2 from 'vue-sweetalert2';
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import storeIndex from './store/index'
+import store from './store/index'
 import Vuex from 'vuex'
 import 'sweetalert2/dist/sweetalert2.min.css'
 import '../node_modules/nprogress/nprogress.css'
 
 
-let store = new Vuex.Store(storeIndex);
+
+//let store = new Vuex.Store(storeIndex);
 router.beforeEach((to, from, next) => {
-    if (!store.state.isAuthenticated && !to.path.includes("/logins")) {
-        next({ path: '/logins' });
+    if (!store.state.isAuthenticated && !to.path.includes("/")) {
+        next({ path: '/' });
     }
     next();
 });

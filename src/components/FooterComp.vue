@@ -8,7 +8,7 @@
             <section class="">
                 <p class="d-flex justify-content-center align-items-center">
                     <span class="me-3">Registrate aquí</span>
-                    <MDBBtn outline="light" rounded> Sign up! </MDBBtn>
+                    <MDBBtn tag="a" outline="light"  href="/logins" rounded> Registrarse! </MDBBtn>
                 </p>
             </section>
             <!-- Section: CTA -->
@@ -71,6 +71,9 @@ export default {
     },
     directives: {
         mdbRipple
+    },
+    methods:{
+        
     }
 };
 </script>
