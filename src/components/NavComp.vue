@@ -23,17 +23,23 @@
                 <MDBNavbarItem linkClass="link-secondary" v-if="$store.state.isAuthenticated">
                     <router-link class="nav-link" to="/solicitud">Reservar</router-link>
                 </MDBNavbarItem>
-                <MDBNavbarItem linkClass="link-secondary" v-if="$store.state.isAuthenticated">
-                    <router-link class="nav-link" to="/categoria">Crear Menu</router-link>
+                <MDBNavbarItem linkClass="link-secondary" v-if="$store.state.isAuthenticated && $store.state.isAdmin">
+                    <router-link class="nav-link" to="/categoria">Categorias</router-link>
                 </MDBNavbarItem>
-                <MDBNavbarItem linkClass="link-secondary">
-                    <router-link class="nav-link" to="/about">About</router-link>
+                <MDBNavbarItem linkClass="link-secondary" v-if="$store.state.isAuthenticated && $store.state.isAdmin">
+                    <router-link class="nav-link" to="/admin" >Panel del administrador</router-link>
+                </MDBNavbarItem>
+                <MDBNavbarItem linkClass="link-secondary" v-if="$store.state.isAuthenticated && $store.state.isAdmin">
+                    <router-link class="nav-link" to="/platillo" >Platillos</router-link>
+                </MDBNavbarItem>
+                <MDBNavbarItem linkClass="link-secondary"  v-if="$store.state.isAuthenticated && $store.state.isAdmin">
+                    <router-link class="nav-link" to="/detalles">Detalles</router-link>
                 </MDBNavbarItem>
             </MDBNavbarNav>
         </MDBCollapse>
 
         <MDBNavbarNav class="mb-2 mb-lg-0 d-flex flex-row">
-            <MDBNavbarItem to="/nombre" class="me-3 me-lg-0" linkClass="link-secondary"
+            <MDBNavbarItem to="/carro" class="me-3 me-lg-0" linkClass="link-secondary"
                 v-if="$store.state.isAuthenticated">
                 <MDBIcon icon="shopping-cart"></MDBIcon>
             </MDBNavbarItem>
@@ -52,7 +58,7 @@
                 <MDBDropdownMenu>
                     <MDBDropdownItem href="/logins" v-if="!$store.state.isAuthenticated">Iniciar Sesión
                     </MDBDropdownItem>
-                    <MDBDropdownItem href="/nombre" v-if="$store.state.isAuthenticated">Mis Pedidos</MDBDropdownItem>
+                    <MDBDropdownItem href="/Pedidos" v-if="$store.state.isAuthenticated">Mis Pedidos</MDBDropdownItem>
                     <MDBDropdownItem href="" @click="logout()" v-if="$store.state.isAuthenticated">Logout
                     </MDBDropdownItem>
                 </MDBDropdownMenu>
@@ -120,12 +126,16 @@ export default {
         logout() {
             this.$store.state.isAuthenticated = false;
             this.$store.state.user = "";
-            this.datalocalstorage();
+            this.$store.state.isAdmin = false;
+            this.$store.state.cart=[];
             this.$router.push("/");
+            this.datalocalstorage();
         },
         datalocalstorage() {
+            localStorage.setItem('vue3.isAdmin', JSON.stringify(this.$store.state.isAdmin));
             localStorage.setItem('vue3.isAuthenticated', JSON.stringify(this.$store.state.isAuthenticated));
             localStorage.setItem('vue3.usuario', JSON.stringify(this.$store.state.user));
+            localStorage.setItem('cart', JSON.stringify(this.$store.state.cart));
         },
     }
 };

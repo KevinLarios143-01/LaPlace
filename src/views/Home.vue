@@ -21,7 +21,7 @@
             <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
               <img src="../assets/pedidos.png" style="width: 150px; height: 150px; align-self: center"
                 class="card-img-top" alt="Palm Springs Road" />
-              <a href="/nombre">
+              <a href="/pedidos">
                 <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
               </a>
             </div>
@@ -47,7 +47,7 @@
             <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
               <img src="../assets/reserva.png" style="width: 150px; height: 150px; align-self: center"
                 class="card-img-top" alt="Los Angeles Skyscrapers" />
-              <a href="/categoria">
+              <a href="/departamentos">
                 <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
               </a>
             </div>
@@ -110,12 +110,12 @@
             <div class="card">
               <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                 <img src="../assets/navidad1.jpg" class="img-fluid" />
-                <a href="#!">
+                <a href="/menu">
                   <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
                 </a>
               </div>
               <div class="card-body" v-if="this.$store.state.isAuthenticated">
-                <a href="#!" class="btn btn-primary">Comprar</a>
+                <a href="/menu" class="btn btn-primary">Comprar</a>
               </div>
               <div class="card-body" v-else>
                 <a href="/logins" class="btn btn-primary">Comprar</a>
@@ -127,12 +127,12 @@
             <div class="card">
               <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                 <img src="../assets/navidad2.jpg" class="img-fluid" />
-                <a href="#!">
+                <a href="/menu">
                   <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
                 </a>
               </div>
               <div class="card-body" v-if="this.$store.state.isAuthenticated">
-                <a href="#!" class="btn btn-primary">Comprar</a>
+                <a href="/menu" class="btn btn-primary">Comprar</a>
               </div>
               <div class="card-body" v-else>
                 <a href="/logins" class="btn btn-primary">Comprar</a>
@@ -144,12 +144,12 @@
             <div class="card">
               <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                 <img src="../assets/navidad3.jpg" class="img-fluid" />
-                <a href="#!">
+                <a href="/menu">
                   <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
                 </a>
               </div>
               <div class="card-body" v-if="this.$store.state.isAuthenticated">
-                <a href="#!" class="btn btn-primary">Comprar</a>
+                <a href="/menu" class="btn btn-primary">Comprar</a>
               </div>
               <div class="card-body" v-else>
                 <a href="/logins" class="btn btn-primary">Comprar</a>
@@ -170,12 +170,12 @@
             <div class="card">
               <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                 <img src="../assets/navidad4.jpg" class="img-fluid" />
-                <a href="#!">
+                <a href="/menu">
                   <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
                 </a>
               </div>
               <div class="card-body" v-if="this.$store.state.isAuthenticated">
-                <a href="#!" class="btn btn-primary">Comprar</a>
+                <a href="/menu" class="btn btn-primary">Comprar</a>
               </div>
               <div class="card-body" v-else>
                 <a href="/logins" class="btn btn-primary">Comprar</a>
@@ -187,12 +187,12 @@
             <div class="card">
               <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                 <img src="../assets/navidad5.jpg" class="img-fluid" />
-                <a href="#!">
+                <a href="/menu">
                   <div class="mask" style="background-color: rgba(251, 251, 251, 0.15)"></div>
                 </a>
               </div>
               <div class="card-body" v-if="this.$store.state.isAuthenticated">
-                <a href="#!" class="btn btn-primary">Comprar</a>
+                <a href="/menu" class="btn btn-primary">Comprar</a>
               </div>
               <div class="card-body" v-else>
                 <a href="/logins" class="btn btn-primary">Comprar</a>
@@ -255,7 +255,7 @@
                 Enviar
               </button>
               <!-- Submit button -->
-       
+
               (*) Campos requeridos.
             </form>
           </div>
@@ -283,6 +283,9 @@ export default {
     this.obtenerCategorias();
     if (localStorage.getItem('vue3.isAuthenticated') != null) {
       this.$store.state.isAuthenticated = JSON.parse(localStorage.getItem('vue3.isAuthenticated'));
+    }
+    if (localStorage.getItem('vue3.isAdmin') != null) {
+      this.$store.state.isAdmin = JSON.parse(localStorage.getItem('vue3.isAdmin'));
     }
   },
   methods: {

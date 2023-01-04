@@ -8,7 +8,8 @@ export default createStore ({
   state: {
     isAuthenticated: false,
     user: "",
-    cart:[]
+    cart:[],
+    isAdmin: false,
   },
   getters: {
     productQuantity: state => mens => {
@@ -26,6 +27,9 @@ export default createStore ({
     carritoTotal: state => {
       return state.cart.reduce((a,b) => a + (b.price * b.quantity), 0);
     },
+    carrInsertar: state=>{
+      return state.cart.filter()
+    }
   },
   mutations: {
     addToCart(state, mens){
@@ -53,6 +57,12 @@ export default createStore ({
       const cart = localStorage.getItem('cart');
       if(cart){
         state.cart=JSON.parse(cart);
+      }
+    },
+    UpdateUserFromLocalStorage(state){
+      const users = localStorage.getItem('vue3.usuario');
+      if(users){
+        state.user=JSON.parse(users);
       }
     }
   },

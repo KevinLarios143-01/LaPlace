@@ -14,7 +14,7 @@
         </MDBModalHeader>
         <MDBModalBody>
           <MDBCard v-if="mens != null" class="h-100">
-            <MDBCardImg src="https://mdbootstrap.com/img/new/standard/city/044.webp" top alt="..." />
+            <MDBCardImg src="https://i.ibb.co/zRNhVCx/comidas.webp" top alt="..." />
             <MDBCardBody>
               <MDBCardTitle>{{ mens.name }}</MDBCardTitle>
             </MDBCardBody>
@@ -64,7 +64,7 @@
           <div v-for="menu in catalog" :key="menu.id" class="col-lg-4 col-md-12 mb-4">
             <div class="card">
               <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                <img src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" class="img-fluid" />
+                <img src="https://i.ibb.co/s6bFNk9/comida.webp" class="img-fluid" />
                 <a href="#!">
                   <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                 </a>
@@ -74,7 +74,13 @@
                 <p class="card-text">
                   Q{{ menu.price.toFixed(2) }}
                 </p>
-                <button @click="viewMenu(menu), vercarrito = true" class="btn btn-primary">
+                <button v-if="$store.state.isAuthenticated" @click="viewMenu(menu), vercarrito = true"
+                  class="btn btn-primary">
+                  <i class="fa fa-shopping-cart"></i>
+                  Generar compra
+                </button>
+
+                <button v-else @click="$router.push('/logins')" class="btn btn-primary">
                   <i class="fa fa-shopping-cart"></i>
                   Generar compra
                 </button>
@@ -168,13 +174,16 @@ export default {
     }
   },
   mounted() {
-    this.obtenerMenus();
     this.obtenerCategorias();
+    this.obtenerMenus();
     if (localStorage.getItem('vue3.isAuthenticated') != null) {
       this.$store.state.isAuthenticated = JSON.parse(localStorage.getItem('vue3.isAuthenticated'));
     }
+    if (localStorage.getItem('vue3.isAdmin') != null) {
+      this.$store.state.isAdmin = JSON.parse(localStorage.getItem('vue3.isAdmin'));
+    }
   },
-  
+
 
   computed: {
     catalog() {

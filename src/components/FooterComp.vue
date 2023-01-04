@@ -5,10 +5,16 @@
         <!-- Grid container -->
         <MDBContainer class="pt-4">
             <!-- Section: CTA -->
-            <section class="">
+            <section class="" v-if="!$store.state.isAuthenticated">
                 <p class="d-flex justify-content-center align-items-center">
                     <span class="me-3">Registrate aquí</span>
                     <MDBBtn tag="a" outline="light"  href="/logins" rounded> Registrarse! </MDBBtn>
+                </p>
+            </section>
+            <section class="" v-else>
+                <p class="d-flex justify-content-center align-items-center">
+                    <span class="me-3">Bienvenid@</span>
+                    <MDBBtn tag="a" outline="light"  rounded> {{$store.state.user}}! </MDBBtn>
                 </p>
             </section>
             <!-- Section: CTA -->

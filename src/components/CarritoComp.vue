@@ -2,7 +2,7 @@
     <MDBCard class="mb-3" style="width: 500px;">
         <MDBRow class="g-0">
             <MDBCol md="4">
-                <MDBCardImg fluid src="https://mdbootstrap.com/wp-content/uploads/2020/06/vertical.webp" alt="..." />
+                <MDBCardImg fluid src="https://i.ibb.co/Rc7yjjP/comida2.jpg" alt="..." />
             </MDBCol>
             <MDBCol md="8">
                 <MDBCardBody>

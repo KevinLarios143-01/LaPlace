@@ -189,6 +189,9 @@ export default {
         if (localStorage.getItem('vue3.isAuthenticated') != null) {
             this.$store.state.isAuthenticated = JSON.parse(localStorage.getItem('vue3.isAuthenticated'));
         }
+        if (localStorage.getItem('vue3.isAdmin') != null) {
+            this.$store.state.isAdmin = JSON.parse(localStorage.getItem('vue3.isAdmin'));
+        }
     },
     methods: {
         obtenerLogin() {
@@ -209,6 +212,11 @@ export default {
                                     icon: 'success',
                                     title: 'INGRESÓ CON ÉXITO',
                                 });
+                                if(this.usuario==="admin@gmail.com"){
+                                    this.$store.state.isAdmin=true;
+                                }else{
+                                    this.$store.state.isAdmin=false;
+                                }
                                 this.$store.state.isAuthenticated = true;
                                 this.$store.state.user = this.usuario;
                                 this.datalocalstorage();
@@ -279,6 +287,7 @@ export default {
             }
         },
         datalocalstorage() {
+            localStorage.setItem('vue3.isAdmin', JSON.stringify(this.$store.state.isAdmin));
             localStorage.setItem('vue3.isAuthenticated', JSON.stringify(this.$store.state.isAuthenticated));
             localStorage.setItem('vue3.usuario', JSON.stringify(this.$store.state.user));
         },

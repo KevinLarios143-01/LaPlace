@@ -29,9 +29,9 @@ const routes = [
     component: () => import('../views/loginR.vue'),
   },
    {
-    path: '/nombre',
-    name: 'nombre',
-    component: () => import('../views/nombre.vue'),
+    path: '/carro',
+    name: 'carro',
+    component: () => import('../views/Carrito.vue'),
   },
   {
     path: '/about',
@@ -42,6 +42,26 @@ const routes = [
     path: '/menu',
     name: 'menu',
     component: () => import('../views/Catalog.vue')
+  },
+  {
+    path: '/Pedidos',
+    name: 'Pedidos',
+    component: () => import('../views/Pedidos.vue')
+  },
+  {
+    path: '/admin',
+    name: 'Admin',
+    component: () => import('../views/AdminPane.vue')
+  },
+  {
+    path: '/platillo',
+    name: 'Platillo',
+    component: () => import('../views/Platillo.vue'),
+  },
+  {
+    path: '/detalles',
+    name: 'Detalles',
+    component: () => import('../views/DetallesReservaciones.vue'),
   },
 ]
 

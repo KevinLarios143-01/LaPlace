@@ -4,7 +4,7 @@
     <div class="container">
       <div class="card">
         <div class="card-header" style="text-align:center ;">
-          Reservaciones
+          <h2 style="color: #62ce5c; font-family: monospace;">Horarios ocupados</h2>
         </div>
         <div class="card-body">
           <br>
@@ -34,7 +34,6 @@
     </div>
   </main>
 </template>
-
 <script>
 import axios from 'axios';
 
@@ -48,6 +47,12 @@ export default {
     }
   },
   mounted() {
+    if (localStorage.getItem('vue3.isAuthenticated') != null) {
+      this.$store.state.isAuthenticated = JSON.parse(localStorage.getItem('vue3.isAuthenticated'));
+    }
+    if (localStorage.getItem('vue3.isAdmin') != null) {
+      this.$store.state.isAdmin = JSON.parse(localStorage.getItem('vue3.isAdmin'));
+    }
     this.obtenerDepartamentos();
   },
   methods: {
@@ -60,10 +65,15 @@ export default {
         this.aDepartamentos = [];
         if (response.status == 200) {
           for (let i = 0; i < response.data.estatus.length; i++) {
+            this.fecha = new Date(response.data.estatus[i].fecha)
+            this.dia = this.fecha.getUTCDate();
+            this.mes = this.fecha.getUTCMonth()+1;
+            this.anio = this.fecha.getUTCFullYear();
             this.aDepartamentos.push({
-              label: response.data.estatus[i].fecha,
+              label: (this.dia+ "-" + this.mes + "-" + this.anio),
               code: response.data.estatus[i].hora
             });
+            
           }
         }
       });

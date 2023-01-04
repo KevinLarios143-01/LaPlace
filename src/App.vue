@@ -18,6 +18,7 @@ export default {
   },
   mounted(){
     this.$store.commit('UpdateCartFromLocalStorage');
+    this.$store.commit('UpdateUserFromLocalStorage');
   }
 }
 </script>
